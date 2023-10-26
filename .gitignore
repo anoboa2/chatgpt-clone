@@ -1,0 +1,5 @@
+.env
+.streamlit/*
+*.pem
+Pipfile
+Pipfile.lock
