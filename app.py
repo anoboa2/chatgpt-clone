@@ -16,9 +16,36 @@ if "messages" not in st.session_state:
 ### Streamlit UI ###
 
 # Populate any previous messages
-for message in st.session_state.messages:
-  with st.chat_message(message["role"]):
-    st.markdown(message["content"])
+if st.session_state.messages == []:
+  st.markdown("### Welcome to my GPT Chatbot! ###")
+  # st.markdown("  ")
+  # col1, col2 = st.columns(2)
+  # cola, colb = st.columns(2)
+  # with col1:
+  #   st.markdown("""
+  #     **Come up with concepts**  
+  #     for a retro style arcade game
+  #   """)
+  # with col2:
+  #   st.markdown("""
+  #     **Show me a code snippet**  
+  #     of a websites sticky header
+  #   """)
+  # with cola:
+  #   st.markdown("""
+  #     **Tell me a joke**  
+  #     about a software engineer
+  #   """)
+  # with colb:
+  #   st.markdown("""
+  #     **Translate this text**  
+  #     into Spanish
+  #   """)
+else:
+  for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+      st.markdown(message["content"])
+
 
 # Accept user input
 if prompt := st.chat_input("What is up?"):
