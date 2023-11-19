@@ -16,39 +16,44 @@ if "messages" not in st.session_state:
 ### Streamlit UI ###
 
 # Populate any previous messages
+examples_placeholder = st.empty()
 if st.session_state.messages == []:
-  st.markdown("### Welcome to my GPT Chatbot! ###")
-  # st.markdown("  ")
-  # col1, col2 = st.columns(2)
-  # cola, colb = st.columns(2)
-  # with col1:
-  #   st.markdown("""
-  #     **Come up with concepts**  
-  #     for a retro style arcade game
-  #   """)
-  # with col2:
-  #   st.markdown("""
-  #     **Show me a code snippet**  
-  #     of a websites sticky header
-  #   """)
-  # with cola:
-  #   st.markdown("""
-  #     **Tell me a joke**  
-  #     about a software engineer
-  #   """)
-  # with colb:
-  #   st.markdown("""
-  #     **Translate this text**  
-  #     into Spanish
-  #   """)
+  with examples_placeholder.container():
+    st.markdown("### Welcome to my GPT Chatbot! ###")
+    st.markdown("  ")
+    col1, col2 = st.columns(2)
+    col3, col4 = st.columns(2)
+    with col1:
+      st.markdown("""
+        **Come up with concepts**  
+        for a retro style arcade game
+      """)
+    with col2:
+      st.markdown("""
+        **Show me a code snippet**  
+        of a websites sticky header
+      """)
+    with col3:
+      st.markdown("""
+        **Tell me a joke**  
+        about a software engineer
+      """)
+    with col4:
+      st.markdown("""
+        **Translate this text**  
+        into Spanish
+      """)
 else:
-  for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-      st.markdown(message["content"])
+  examples_placeholder.empty()
+
+
+for message in st.session_state.messages:
+  with st.chat_message(message["role"]):
+    st.markdown(message["content"])
 
 
 # Accept user input
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Message CloneGPT..."):
     
   # Add user message to chat history
   st.session_state.messages.append({"role": "user", "content": prompt})
